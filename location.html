@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Location & Transport | Pearl Cakes</title>
+    <link rel="icon" href="cak.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        /* DESIGN OVERHAUL:
+        1. Removed excessive border-radius for a sharper, professional look.
+        2. Increased whitespace to reduce "texted" feel.
+        3. Full-width Map integration.
+        4. Modern 'Inter' font for better readability.
+        */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #821415;
+            --dark: #121212;
+            --light-bg: #ffffff;
+            --accent-bg: #f8f9fa;
+            --border-color: #e5e7eb;
+            --text-main: #374151;
+            --text-muted: #6b7280;
+            --transition: all 0.25s ease;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--light-bg);
+            color: var(--text-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* --- Navigation --- */
+        header {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 40px;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .brand-name {
+            font-weight: 700;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+            color: var(--dark);
+            text-transform: uppercase;
+        }
+
+        .menu-wrapper {
+            position: relative;
+        }
+
+        .menu-trigger {
+            background: var(--dark);
+            color: white;
+            padding: 10px 24px;
+            border: none;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: var(--transition);
+        }
+
+        .menu-trigger:hover {
+            background: var(--primary);
+        }
+
+        .dropdown-content {
+            position: absolute;
+            right: 0;
+            top: 100%;
+            background: white;
+            min-width: 240px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(5px);
+            transition: var(--transition);
+        }
+
+        .menu-wrapper:hover .dropdown-content {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-content a {
+            color: var(--dark);
+            padding: 14px 24px;
+            text-decoration: none;
+            display: block;
+            font-size: 0.9rem;
+            border-bottom: 1px solid #f5f5f5;
+        }
+
+        .dropdown-content a:hover {
+            background: var(--accent-bg);
+            color: var(--primary);
+        }
+
+        /* --- Hero --- */
+        .hero {
+            padding: 100px 24px;
+            text-align: center;
+            background: var(--accent-bg);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            color: var(--dark);
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* --- Map Section (Breaking the Box) --- */
+        .map-section {
+            width: 100%;
+            height: 550px;
+            background: #eee;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .map-section iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            filter: grayscale(0.2) contrast(1.1);
+        }
+
+        /* --- Info Grid --- */
+        .content-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 24px;
+        }
+
+        .info-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            margin-bottom: 100px;
+        }
+
+        .info-item h2 {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+
+        .info-item p {
+            color: var(--text-main);
+            font-size: 1rem;
+        }
+
+        /* --- Car Hire Section --- */
+        .section-header {
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2px; /* Thin line separator look */
+            background: var(--border-color);
+            border: 1px solid var(--border-color);
+        }
+
+        .service-card {
+            background: white;
+            padding: 60px 40px;
+            transition: var(--transition);
+        }
+
+        .service-card:hover {
+            background: var(--accent-bg);
+        }
+
+        .service-card i {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 30px;
+            display: block;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+
+        .service-card p {
+            color: var(--text-muted);
+            margin-bottom: 30px;
+            font-size: 0.95rem;
+        }
+
+        .feature-list {
+            list-style: none;
+            margin-bottom: 40px;
+        }
+
+        .feature-list li {
+            font-size: 0.9rem;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .feature-list li::before {
+            content: "→";
+            color: var(--primary);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            border: 1px solid var(--dark);
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: var(--transition);
+        }
+
+        .btn:hover {
+            background: var(--dark);
+            color: white;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 80px 24px 40px;
+        }
+
+        .footer-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 60px;
+        }
+
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .footer-col h4 {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 25px;
+            color: #888;
+        }
+
+        .footer-col a {
+            color: #ccc;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 12px;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .footer-col a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+
+        .copyright {
+            max-width: 1200px;
+            margin: 60px auto 0;
+            padding-top: 30px;
+            border-top: 1px solid #222;
+            font-size: 0.8rem;
+            color: #666;
+            text-align: center;
+        }
+
+        /* --- Mobile Adjustments --- */
+        @media (max-width: 768px) {
+            .nav-container { padding: 12px 20px; }
+            .hero { padding: 60px 20px; }
+            .map-section { height: 350px; }
+            .footer-grid { grid-template-columns: 1fr; gap: 40px; }
+            .services-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="nav-container">
+        <a href="index.html" class="logo-area">
+            <span class="brand-name">Pearl Cakes</span>
+        </a>
+        <div class="menu-wrapper">
+            <button class="menu-trigger">MENU <i class="fas fa-chevron-down"></i></button>
+            <div class="dropdown-content">
+                <a href="index.html">Home</a>
+                <a href="contact.html">Contact Us</a>
+                <a href="location.html">Our Location</a>
+                <a href="tel:0703100226">Call Now</a>
+            </div>
+        </div>
+    </div>
+</header>
+
+<section class="hero">
+    <h1>Location & Transport</h1>
+    <p>Find us in the heart of Arua Park or book a vehicle from our professional fleet for your next journey.</p>
+</section>
+
+<div class="map-section">
+    <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.758364371987!2d32.5768843!3d0.3159!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x177dbc804689097d%3A0x679468537d8e6c46!2sArua%20Park!5e0!3m2!1sen!2sug!4v1710000000000" 
+        allowfullscreen="" 
+        loading="lazy">
+    </iframe>
+</div>
+
+<div class="content-container">
+    <div class="info-bar">
+        <div class="info-item">
+            <h2>The Shop</h2>
+            <p>Arua Park, Opposite Pearl Mall<br>Near Central Taxi Park<br>Kampala, Uganda</p>
+        </div>
+        <div class="info-item">
+            <h2>Hours</h2>
+            <p>Mon — Sat: 09:00 - 20:00<br>Sunday: WhatsApp Orders Only</p>
+        </div>
+        <div class="info-item">
+            <h2>Inquiries</h2>
+            <p>Phone: +256 786 979680<br>WhatsApp: +256 703 100226</p>
+        </div>
+    </div>
+
+    <div class="section-header">
+        <h2>Car Hire Services</h2>
+        <p>Tailored transport solutions for individuals and events.</p>
+    </div>
+
+    <div class="services-grid">
+        <div class="service-card">
+            <i class="fas fa-key"></i>
+            <h3>Self Drive</h3>
+            <p>Complete autonomy with our fleet of maintained sedans and 4x4 SUVs. Perfect for business or personal errands.</p>
+            <ul class="feature-list">
+                <li>Comprehensive Insurance</li>
+                <li>Unlimited Mileage Options</li>
+                <li>24/7 Roadside Support</li>
+            </ul>
+            <a href="https://wa.me/256703100226" class="btn">Inquire Now</a>
+        </div>
+
+        <div class="service-card">
+            <i class="fas fa-user-tie"></i>
+            <h3>Chauffeur Driven</h3>
+            <p>Professional drivers who know the city. Ideal for airport transfers, weddings, and executive travel.</p>
+            <ul class="feature-list">
+                <li>Experienced Local Drivers</li>
+                <li>Fuel Inclusive Rates</li>
+                <li>Punctuality Guaranteed</li>
+            </ul>
+            <a href="https://wa.me/256703100226" class="btn">Book Driver</a>
+        </div>
+
+        <div class="service-card">
+            <i class="fas fa-bus"></i>
+            <h3>Event Fleet</h3>
+            <p>Large capacity vehicles for group transport, including Coasters and luxury bridal cars for your special day.</p>
+            <ul class="feature-list">
+                <li>14 - 30 Seater Vans</li>
+                <li>Luxury Bridal Fleet</li>
+                <li>Group Itineraries</li>
+            </ul>
+            <a href="https://wa.me/256703100226" class="btn">Request Fleet</a>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <div class="footer-grid">
+        <div class="footer-col">
+            <span class="footer-logo">Pearl Cakes & Events</span>
+            <p style="color: #888; font-size: 0.9rem;">Elegance in every bite. Quality in every journey. Located in the heart of Kampala, serving you since 2025.</p>
+        </div>
+        <div class="footer-col">
+            <h4>Navigate</h4>
+            <a href="index.html">Home</a>
+            <a href="contact.html">Contact</a>
+            <a href="location.html">Car Hire</a>
+        </div>
+        <div class="footer-col">
+            <h4>Connect</h4>
+            <a href="tel:+256786979680">Call Center</a>
+            <a href="https://wa.me/256703100226">WhatsApp</a>
+            <a href="#">Instagram</a>
+        </div>
+    </div>
+    <div class="copyright">
+        &copy; 2026 Pearl Cakes & Events. All rights reserved.
+    </div>
+</footer>
+
+</body>
+</html>
