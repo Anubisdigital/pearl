@@ -1,0 +1,636 @@
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Pearl Cakes & Events | Contact & Support</title>
+    
+    <link rel="icon" href="cak.png" type="image/png">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    
+    <script src="https://js.puter.com/v2/"></script>
+
+    <style>
+        /* PEARL CAKES BRAND IDENTITY SYSTEM
+           Primary Color: #821415 (Maroon from Logo)
+           Secondary: #ffffff (White)
+           Typography: Playfair Display (Serif) & Inter (Sans)
+        */
+
+        :root {
+            --brand-maroon: #821415;
+            --brand-white: #ffffff;
+            --bg-cream: #fcfcfc;
+            --text-dark: #1a1a1a;
+            --text-gray: #4b5563;
+            --border-light: #eeeeee;
+            --transition-smooth: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            --container-width: 1200px;
+        }
+
+        /* Base Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            outline: none;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--brand-white);
+            color: var(--text-dark);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* Typography */
+        h1, h2, h3, .serif {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+
+        /* --- Navigation --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 2000;
+            border-bottom: 1px solid var(--border-light);
+            transition: var(--transition-smooth);
+        }
+
+        .nav-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-box {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo-box img {
+            height: 50px;
+            width: auto;
+        }
+
+        .logo-text {
+            color: var(--brand-maroon);
+            font-size: 1.4rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 900;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--brand-maroon);
+            transition: var(--transition-smooth);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* --- Hero Section --- */
+        .hero-banner {
+            padding: 160px 24px 100px;
+            background-color: var(--brand-maroon);
+            color: var(--brand-white);
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-banner h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .hero-banner p {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        /* --- Minimalist Contact Grid --- */
+        .main-content {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 80px 24px;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            border: 1px solid var(--border-light);
+            background: var(--border-light);
+            gap: 1px; /* Creates the minimalist line effect */
+            margin-bottom: 100px;
+        }
+
+        .contact-method {
+            background: white;
+            padding: 80px 50px;
+            transition: var(--transition-smooth);
+        }
+
+        .contact-method:hover {
+            background: #fafafa;
+        }
+
+        .method-icon {
+            font-size: 2rem;
+            color: var(--brand-maroon);
+            margin-bottom: 30px;
+        }
+
+        .contact-method h2 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--text-dark);
+        }
+
+        .contact-method p {
+            color: var(--text-gray);
+            margin-bottom: 35px;
+            font-size: 1rem;
+        }
+
+        .action-link {
+            display: inline-block;
+            padding: 14px 35px;
+            background: var(--brand-maroon);
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: var(--transition-smooth);
+        }
+
+        .action-link:hover {
+            background: var(--text-dark);
+            transform: translateY(-3px);
+        }
+
+        /* --- Showcase Section --- */
+        .showcase {
+            margin-bottom: 100px;
+        }
+
+        .section-label {
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            font-size: 0.75rem;
+            color: var(--brand-maroon);
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+        }
+
+        .showcase-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+
+        .showcase-item {
+            aspect-ratio: 1/1;
+            background: var(--bg-cream);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--border-light);
+        }
+
+        .showcase-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition-smooth);
+        }
+
+        .showcase-item:hover img {
+            transform: scale(1.05);
+        }
+
+        /* --- AI Chat Concierge Interface --- */
+        .ai-concierge-wrap {
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            z-index: 3000;
+        }
+
+        #ai-trigger {
+            width: 70px;
+            height: 70px;
+            background: var(--brand-maroon);
+            border-radius: 0; /* Minimalist Square Look */
+            border: none;
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+            box-shadow: 0 15px 45px rgba(130, 20, 21, 0.2);
+            transition: var(--transition-smooth);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #ai-trigger:hover {
+            transform: scale(1.05) rotate(90deg);
+            background: var(--text-dark);
+        }
+
+        .chat-container {
+            position: absolute;
+            bottom: 90px;
+            right: 0;
+            width: 420px;
+            height: 600px;
+            background: white;
+            border: 1px solid var(--border-light);
+            box-shadow: 0 30px 100px rgba(0,0,0,0.15);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            animation: slideIn 0.5s ease forwards;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .chat-header {
+            padding: 25px;
+            background: var(--brand-maroon);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-body {
+            flex: 1;
+            padding: 25px;
+            overflow-y: auto;
+            background: #fff;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .chat-msg {
+            max-width: 85%;
+            padding: 15px 20px;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .chat-msg.bot {
+            background: var(--bg-cream);
+            align-self: flex-start;
+            color: var(--text-dark);
+            border-left: 3px solid var(--brand-maroon);
+        }
+
+        .chat-msg.user {
+            background: var(--text-dark);
+            color: white;
+            align-self: flex-end;
+        }
+
+        .chat-footer {
+            padding: 20px;
+            border-top: 1px solid var(--border-light);
+            display: flex;
+            gap: 15px;
+        }
+
+        #chat-input {
+            flex: 1;
+            border: 1px solid var(--border-light);
+            padding: 12px 15px;
+            font-family: inherit;
+            background: var(--bg-cream);
+        }
+
+        #chat-send {
+            background: var(--brand-maroon);
+            color: white;
+            border: none;
+            width: 50px;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+
+        #chat-send:hover { background: var(--text-dark); }
+
+        /* --- Footer --- */
+        footer {
+            background: #111;
+            color: #888;
+            padding: 100px 24px 50px;
+        }
+
+        .footer-grid {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 80px;
+        }
+
+        .footer-brand h2 {
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+        }
+
+        .footer-col h4 {
+            color: white;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 30px;
+        }
+
+        .footer-col a {
+            display: block;
+            color: #666;
+            text-decoration: none;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            transition: var(--transition-smooth);
+        }
+
+        .footer-col a:hover {
+            color: var(--brand-maroon);
+            padding-left: 10px;
+        }
+
+        .bottom-bar {
+            max-width: var(--container-width);
+            margin: 60px auto 0;
+            padding-top: 40px;
+            border-top: 1px solid #222;
+            text-align: center;
+            font-size: 0.8rem;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 1024px) {
+            .showcase-grid { grid-template-columns: repeat(2, 1fr); }
+            .footer-grid { grid-template-columns: 1fr; gap: 50px; text-align: center; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-inner { padding: 15px 20px; }
+            .nav-links { display: none; }
+            .hero-banner { padding: 120px 20px 60px; }
+            .contact-method { padding: 60px 30px; }
+            .chat-container { width: calc(100vw - 40px); bottom: 80px; right: -20px; }
+            .showcase-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+
+<nav id="navbar">
+    <div class="nav-inner">
+        <a href="index.html" class="logo-box">
+            <img src="cak.png" alt="Pearl Cakes Logo">
+            <span class="logo-text">Pearl</span>
+        </a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="location.html">Location</a>
+            <a href="location.html#transport">Transport</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </div>
+</nav>
+
+<section class="hero-banner">
+    <h1>Elegance in Every Bite.</h1>
+    <p>Pearl Cakes & Events brings world-class baking and professional event coordination to the heart of Arua Park, Kampala.</p>
+</section>
+
+<main class="main-content">
+    
+    <span class="section-label">Get In Touch</span>
+    <h2 class="section-title">How can we help?</h2>
+
+    <div class="contact-grid">
+        <div class="contact-method">
+            <div class="method-icon"><i class="fab fa-whatsapp"></i></div>
+            <h2>Order Chat</h2>
+            <p>Ready to customize your cake? Our team is available on WhatsApp for design consultations and instant booking.</p>
+            <a href="https://wa.me/256703100226" class="action-link">Start Chat</a>
+        </div>
+
+        <div class="contact-method">
+            <div class="method-icon"><i class="fas fa-phone-alt"></i></div>
+            <h2>Voice Support</h2>
+            <p>Prefer the traditional way? Call our shop directly to discuss event logistics or urgent deliveries.</p>
+            <a href="tel:+256786979680" class="action-link">Call +256 786 979680</a>
+        </div>
+
+        <div class="contact-method">
+            <div class="method-icon"><i class="fas fa-map-marker-alt"></i></div>
+            <h2>Visit Us</h2>
+            <p>Located in Arua Park, Kampala. Visit us to taste our daily bakes and see our floral collection.</p>
+            <a href="location.html" class="action-link">View Location</a>
+        </div>
+    </div>
+
+    <section class="showcase">
+        <span class="section-label">The Collection</span>
+        <h2 class="section-title">Our Specialty</h2>
+        <div class="showcase-grid">
+            <div class="showcase-item"><img src="jas1.jpg" alt="Specialty Image 1"></div>
+            <div class="showcase-item"><img src="jas2.jpg" alt="Specialty Image 2"></div>
+            <div class="showcase-item"><img src="jas3.jpg" alt="Specialty Image 3"></div>
+            <div class="showcase-item"><img src="jas4.jpg" alt="Specialty Image 4"></div>
+        </div>
+    </section>
+
+</main>
+
+<div class="ai-concierge-wrap">
+    <button id="ai-trigger">
+        <i class="fas fa-comment-alt"></i>
+    </button>
+    <div class="chat-container" id="chat-win">
+        <div class="chat-header">
+            <div style="display:flex; align-items:center; gap:10px;">
+                <img src="cak.png" height="30" alt="Logo">
+                <span style="font-weight:700; letter-spacing:1px;">PEARL AI</span>
+            </div>
+            <i class="fas fa-times" id="close-chat" style="cursor:pointer"></i>
+        </div>
+        <div class="chat-body" id="chat-box">
+            <div class="chat-msg bot">
+                Welcome to Pearl Cakes & Events. I am your automated concierge. 
+                Ask me about our cake flavors, event pricing, or car hire availability!
+            </div>
+        </div>
+        <div class="chat-footer">
+            <input type="text" id="chat-input" placeholder="Type your inquiry...">
+            <button id="chat-send"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <div class="footer-grid">
+        <div class="footer-brand">
+            <h2>Pearl Cakes & Events</h2>
+            <p>Excellence in baking and event coordination since 2025. Serving Kampala with premium quality and professional reliability.</p>
+        </div>
+        <div class="footer-col">
+            <h4>Quick Links</h4>
+            <a href="index.html">Home</a>
+            <a href="location.html">Location</a>
+            <a href="location.html#transport">Car Hire</a>
+            <a href="contact.html">Support</a>
+        </div>
+        <div class="footer-col">
+            <h4>Follow Us</h4>
+            <a href="#">Instagram</a>
+            <a href="#">Facebook</a>
+            <a href="#">Twitter</a>
+            <a href="https://wa.me/256703100226">WhatsApp</a>
+        </div>
+    </div>
+    <div class="bottom-bar">
+        &copy; 2026 Pearl Cakes & Events. Developed by Anubis Digital. All Rights Reserved.
+    </div>
+</footer>
+
+<script>
+    // 1. AI Implementation with Puter.js
+    const trigger = document.getElementById('ai-trigger');
+    const chatWin = document.getElementById('chat-win');
+    const closeBtn = document.getElementById('close-chat');
+    const chatInput = document.getElementById('chat-input');
+    const chatSend = document.getElementById('chat-send');
+    const chatBox = document.getElementById('chat-box');
+
+    // Toggle Chat
+    trigger.addEventListener('click', () => {
+        chatWin.style.display = (chatWin.style.display === 'flex') ? 'none' : 'flex';
+    });
+
+    closeBtn.addEventListener('click', () => {
+        chatWin.style.display = 'none';
+    });
+
+    // Puter AI Request
+    async function talkToAI(prompt) {
+        const context = `
+            You are the Official AI Assistant for Pearl Cakes & Events.
+            Location: Arua Park, Kampala, Uganda (Opposite Pearl Mall).
+            Specialties: Cakes (85,000 UGX starting), Flowers (50,000 UGX starting), Event Management.
+            Car Hire Services: Self-drive, with driver, or event fleet (Coasters/Vans).
+            Contact: Call +256786979680 or WhatsApp +256703100226.
+            Tone: Professional, high-end, helpful. Do not use emojis.
+        `;
+
+        try {
+            const response = await puter.ai.chat(context + "\nUser: " + prompt);
+            return response;
+        } catch (e) {
+            return "I apologize, I am experiencing a connection issue. Please contact our human team at +256 786 979680.";
+        }
+    }
+
+    async function sendMessage() {
+        const text = chatInput.value.trim();
+        if(!text) return;
+
+        appendMsg(text, 'user');
+        chatInput.value = '';
+
+        const loader = appendMsg('Consulting our team...', 'bot');
+        const reply = await talkToAI(text);
+        loader.innerText = reply;
+        chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    function appendMsg(text, side) {
+        const div = document.createElement('div');
+        div.className = `chat-msg ${side}`;
+        div.innerText = text;
+        chatBox.appendChild(div);
+        chatBox.scrollTop = chatBox.scrollHeight;
+        return div;
+    }
+
+    chatSend.addEventListener('click', sendMessage);
+    chatInput.addEventListener('keypress', (e) => {
+        if(e.key === 'Enter') sendMessage();
+    });
+
+    // 2. Navigation Scroll Effect
+    window.addEventListener('scroll', () => {
+        const nav = document.getElementById('navbar');
+        if (window.scrollY > 50) {
+            nav.style.padding = '10px 40px';
+            nav.style.background = 'white';
+        } else {
+            nav.style.padding = '15px 40px';
+        }
+    });
+
+</script>
+
+</body>
+</html>
